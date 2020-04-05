@@ -1,5 +1,5 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor simphonyVersion="2.7.0">
-  <name>Grid Display</name>
+  <name>Grid display</name>
   <type>2D</type>
   <styles>
     <entry>
@@ -14,7 +14,7 @@
   <editedStyles>
     <entry>
       <string>simulation.Virus</string>
-      <string>simulation.Virus.style_0.xml</string>
+      <string>simulation.Virus.style_1.xml</string>
     </entry>
     <entry>
       <string>simulation.Human</string>
@@ -31,7 +31,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1705663445</hashCode>
+    <hashCode>-251106983</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>grid</layoutProjection>

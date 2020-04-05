@@ -22,7 +22,7 @@ public class SimulationBuilder implements ContextBuilder<Object>{
 
 	@Override
 	public Context build(Context<Object> context) {
-		context.setId("sumulation");
+		context.setId("simulation");
 
 		ContinuousSpaceFactory spaceFactory = ContinuousSpaceFactoryFinder
 				.createContinuousSpaceFactory(null);
