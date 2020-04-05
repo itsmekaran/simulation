@@ -19,7 +19,7 @@ public class Human {
 	private ContinuousSpace<Object> space;
 	private Grid<Object> grid;
 	private int energy, startingEnergy;
-	private int immune;
+	public int immune;
 	
 	public Human(ContinuousSpace<Object> space, Grid<Object> grid, int energy, int immunity) {
 		this.space = space;

@@ -77,17 +77,19 @@ public class Virus {
 
 		if (humans.size() > 0) {
 			int index = RandomHelper.nextIntFromTo(0, humans.size() - 1);
-			Object obj = humans.get(index);
+			Human obj = (Human) humans.get(index);
 			NdPoint spacePt = space.getLocation(obj);
 			Context<Object> context = ContextUtils.getContext(obj);
-			context.remove(obj);
-			Virus virus = new Virus(space, grid);
-			context.add(virus);
-			space.moveTo(virus, spacePt.getX(), spacePt.getY());
-			grid.moveTo(virus, pt.getX(), pt.getY());
-			
-			Network<Object> net = (Network<Object>)context.getProjection("infection network");
-			net.addEdge(this, virus);
+			if(obj.immune > 40)
+			{
+				context.remove(obj);
+				Virus virus = new Virus(space, grid);
+				context.add(virus);
+				space.moveTo(virus, spacePt.getX(), spacePt.getY());
+				grid.moveTo(virus, pt.getX(), pt.getY());
+			}
+			//Network<Object> net = (Network<Object>)context.getProjection("infection network");
+			//net.addEdge(this, virus);
 		}
 	}
 }
