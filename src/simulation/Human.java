@@ -1,7 +1,6 @@
 package simulation;
 
 import java.util.List;
-import java.util.Random;
 
 import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
@@ -31,7 +30,7 @@ public class Human {
 	public double moral;
 	
 	
-	public Human(ContinuousSpace<Object> space, Grid<Object> grid, int energy) {
+	public Human(ContinuousSpace<Object> space, Grid<Object> grid) {
 		this.space = space;
 		this.grid = grid;
 		this.energy = startingEnergy = energy;
@@ -74,13 +73,12 @@ public class Human {
 	@ScheduledMethod(start = 1, interval = 1)
 	public void reduceImmunity() {
 		if(this.diseases > 0 ) {
-			this.immune -= 0.01*this.diseases;
+			this.immune -= 2*this.diseases;
 		}
-		
 		if(this.immune == 0.0) {
 			Context<Object> context = ContextUtils.getContext(this);
-			context.remove(this);
-		}
+			context.remove(this); }
+		 
 	}
 	
 	public void moveTowards(GridPoint pt) {

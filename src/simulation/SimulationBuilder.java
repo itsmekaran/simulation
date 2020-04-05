@@ -47,7 +47,7 @@ public class SimulationBuilder implements ContextBuilder<Object>{
 		
 		for (int i = 0; i < humanCount; i++) {
 			int energy = RandomHelper.nextIntFromTo(4, 10);
-			context.add(new Human(space, grid, energy));
+			context.add(new Human(space, grid));
 		}
 
 		for (Object obj : context) {

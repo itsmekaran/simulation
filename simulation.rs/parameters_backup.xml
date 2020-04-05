@@ -7,19 +7,19 @@
 									
 		/>
 				<parameter name="virus_count" displayName="Virus Count" type="int" 
-						defaultValue="50" 
+						defaultValue="2" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
 				<parameter name="human_count" displayName="Human Count" type="int" 
-						defaultValue="10000" 
+						defaultValue="1000" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
 				<parameter name="infectionRate" displayName="Infection Rate" type="int" 
-						defaultValue="101" 
+						defaultValue="70" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
