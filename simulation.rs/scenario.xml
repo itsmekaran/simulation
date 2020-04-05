@@ -1,3 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Scenario>
+<Scenario simphonyVersion="2.7.0">
+<repast.simphony.action.display context="simulation" file="repast.simphony.action.display_0.xml" />
 </Scenario>

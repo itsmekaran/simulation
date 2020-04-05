@@ -19,15 +19,16 @@ public class Human {
 	private ContinuousSpace<Object> space;
 	private Grid<Object> grid;
 	private int energy, startingEnergy;
-	private int immune = 100;
+	private int immune;
 	
-	public Human(ContinuousSpace<Object> space, Grid<Object> grid, int energy) {
+	public Human(ContinuousSpace<Object> space, Grid<Object> grid, int energy, int immunity) {
 		this.space = space;
 		this.grid = grid;
 		this.energy = startingEnergy = energy;
+		this.immune = immunity;
 	}
 	
-	@Watch(watcheeClassName = "jzombies.Zombie", watcheeFieldNames = "moved", 
+	@Watch(watcheeClassName = "simulation.Virus", watcheeFieldNames = "moved", 
 			query = "within_vn 1", whenToTrigger = WatcherTriggerSchedule.IMMEDIATE)
 	public void run() {
 		// get the grid location of this Human
