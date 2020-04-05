@@ -62,7 +62,7 @@ public class Virus {
 	public void recover() {
 		if(this.h != null && this.h.isInfected == true ) {
 			this.h.immune = (2 + this.h.moral) + this.h.immune;
-			if(this.h.immune == 100) {
+			if(this.h.immune >= 100) {
 				GridPoint pt = this.grid.getLocation(this);
 				NdPoint spacePt = space.getLocation(this);
 				Context<Object> context = ContextUtils.getContext(this);
