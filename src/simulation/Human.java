@@ -1,7 +1,9 @@
 package simulation;
 
 import java.util.List;
+import java.util.Random;
 
+import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.engine.watcher.Watch;
 import repast.simphony.engine.watcher.WatcherTriggerSchedule;
 import repast.simphony.query.space.grid.GridCell;
@@ -20,12 +22,20 @@ public class Human {
 	private Grid<Object> grid;
 	private int energy, startingEnergy;
 	public int immune;
+	public boolean isInfected;
+	public boolean wasHuman;
+	private int age;
+	
+	
 	
 	public Human(ContinuousSpace<Object> space, Grid<Object> grid, int energy) {
 		this.space = space;
 		this.grid = grid;
 		this.energy = startingEnergy = energy;
-		this.immune = 100;
+		//this.immune = Random.uniform.getNextIntFromTo(0, 100);
+		this.immune = RandomHelper.nextIntFromTo(0, 100);
+		this.isInfected = false;
+		
 	}
 	
 	@Watch(watcheeClassName = "simulation.Virus", watcheeFieldNames = "moved", 
@@ -69,4 +79,5 @@ public class Human {
 			//energy--;
 		}
 	}
+	
 }
