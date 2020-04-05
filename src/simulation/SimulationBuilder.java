@@ -38,15 +38,16 @@ public class SimulationBuilder implements ContextBuilder<Object>{
 		
 		Parameters params = RunEnvironment.getInstance().getParameters();
 		int virusCount = (Integer) params.getValue("virus_count");
+		int infectionRate = (Integer) params.getValue("infectionRate");
 		for (int i = 0; i < virusCount; i++) {
-			context.add(new Virus(space, grid));
+			context.add(new Virus(space, grid, infectionRate));
 		}
 
 		int humanCount = (Integer) params.getValue("human_count");
-		int immunity = (Integer) params.getValue("immunity");
+		
 		for (int i = 0; i < humanCount; i++) {
 			int energy = RandomHelper.nextIntFromTo(4, 10);
-			context.add(new Human(space, grid, energy, immunity));
+			context.add(new Human(space, grid, energy));
 		}
 
 		for (Object obj : context) {

@@ -22,10 +22,12 @@ public class Virus {
 	private ContinuousSpace<Object> space;
 	private Grid<Object> grid;
 	private boolean moved;
+	private int infectionRate;
 
-	public Virus(ContinuousSpace<Object> space, Grid<Object> grid) {
+	public Virus(ContinuousSpace<Object> space, Grid<Object> grid, int infectionRate) {
 		this.space = space;
 		this.grid = grid;
+		this.infectionRate = infectionRate;
 	}
 
 	@ScheduledMethod(start = 1, interval = 1)
@@ -80,10 +82,10 @@ public class Virus {
 			Human obj = (Human) humans.get(index);
 			NdPoint spacePt = space.getLocation(obj);
 			Context<Object> context = ContextUtils.getContext(obj);
-			if(obj.immune > 40)
+			if(this.infectionRate > (obj.immune))
 			{
 				context.remove(obj);
-				Virus virus = new Virus(space, grid);
+				Virus virus = new Virus(space, grid, this.infectionRate);
 				context.add(virus);
 				space.moveTo(virus, spacePt.getX(), spacePt.getY());
 				grid.moveTo(virus, pt.getX(), pt.getY());

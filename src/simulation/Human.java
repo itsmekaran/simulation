@@ -21,11 +21,11 @@ public class Human {
 	private int energy, startingEnergy;
 	public int immune;
 	
-	public Human(ContinuousSpace<Object> space, Grid<Object> grid, int energy, int immunity) {
+	public Human(ContinuousSpace<Object> space, Grid<Object> grid, int energy) {
 		this.space = space;
 		this.grid = grid;
 		this.energy = startingEnergy = energy;
-		this.immune = immunity;
+		this.immune = 100;
 	}
 	
 	@Watch(watcheeClassName = "simulation.Virus", watcheeFieldNames = "moved", 
