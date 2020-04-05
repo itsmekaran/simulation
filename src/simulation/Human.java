@@ -3,6 +3,7 @@ package simulation;
 import java.util.List;
 import java.util.Random;
 
+import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.engine.watcher.Watch;
 import repast.simphony.engine.watcher.WatcherTriggerSchedule;
@@ -14,6 +15,7 @@ import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridPoint;
+import repast.simphony.util.ContextUtils;
 import repast.simphony.util.SimUtilities;
 
 public class Human {
@@ -21,11 +23,12 @@ public class Human {
 	private ContinuousSpace<Object> space;
 	private Grid<Object> grid;
 	private int energy, startingEnergy;
-	public int immune;
+	public double immune;
 	public boolean isInfected;
 	public boolean wasHuman;
 	private int age;
-	
+	private int diseases;
+	public double moral;
 	
 	
 	public Human(ContinuousSpace<Object> space, Grid<Object> grid, int energy) {
@@ -33,9 +36,10 @@ public class Human {
 		this.grid = grid;
 		this.energy = startingEnergy = energy;
 		//this.immune = Random.uniform.getNextIntFromTo(0, 100);
-		this.immune = RandomHelper.nextIntFromTo(0, 100);
+		this.immune = RandomHelper.nextDoubleFromTo(0.0, 100.0);
 		this.isInfected = false;
-		
+		this.diseases = RandomHelper.nextIntFromTo(0, 2);
+		this.moral = 0.3;
 	}
 	
 	@Watch(watcheeClassName = "simulation.Virus", watcheeFieldNames = "moved", 
@@ -67,6 +71,18 @@ public class Human {
 		}
 	}
 	
+	@ScheduledMethod(start = 1, interval = 1)
+	public void reduceImmunity() {
+		if(this.diseases > 0 ) {
+			this.immune -= 0.01*this.diseases;
+		}
+		
+		if(this.immune == 0.0) {
+			Context<Object> context = ContextUtils.getContext(this);
+			context.remove(this);
+		}
+	}
+	
 	public void moveTowards(GridPoint pt) {
 		// only move if we are not already in this grid location
 		if (!pt.equals(grid.getLocation(this))) {
@@ -76,7 +92,6 @@ public class Human {
 			space.moveByVector(this, 2, angle, 0);
 			myPoint = space.getLocation(this);
 			grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
-			//energy--;
 		}
 	}
 	
