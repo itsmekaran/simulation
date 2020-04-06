@@ -23,7 +23,7 @@ public class Virus {
 	private Grid<Object> grid;
 	private boolean moved;
 	private int infectionRate;
-	private Human h;
+	public Human h;
 	
 	
 
@@ -56,12 +56,12 @@ public class Virus {
 		moveTowards(pointWithMostHumans);
 		infect();
 		recover();
-		
+		reduceImunnity();
 	}
 	
 	public void recover() {
 		if(this.h != null && this.h.isInfected == true ) {
-			this.h.immune = (1.5 + this.h.moral) + this.h.immune;
+			this.h.immune = (2 + this.h.moral) + this.h.immune;
 			if(this.h.immune >= 100) {
 				GridPoint pt = this.grid.getLocation(this);
 				NdPoint spacePt = space.getLocation(this);
@@ -73,6 +73,11 @@ public class Virus {
 				grid.moveTo(human, pt.getX(), pt.getY());
 			}
 		}
+	}
+	
+	public void reduceImunnity() {
+		if(this.h.isInfected ==true)
+			this.h.immune -= 0.5;
 	}
 	
 	public void moveTowards(GridPoint pt) {
@@ -103,7 +108,7 @@ public class Virus {
 			Human obj = (Human) humans.get(index);
 			NdPoint spacePt = space.getLocation(obj);
 			Context<Object> context = ContextUtils.getContext(obj);
-			if(this.infectionRate > (obj.immune))
+			if(this.infectionRate > (obj.immune) && obj.immune > 0)
 			{
 				context.remove(obj);
 				Virus virus = new Virus(space, grid, this.infectionRate);

@@ -34,7 +34,7 @@ public class Human {
 		this.grid = grid;
 		this.energy = startingEnergy = energy;
 		// this.immune = Random.uniform.getNextIntFromTo(0, 100);
-		this.immune = RandomHelper.nextDoubleFromTo(0.0, 100.0);
+		this.immune = RandomHelper.nextDoubleFromTo(40.0, 100.0);
 		this.isInfected = false;
 		this.diseases = RandomHelper.nextIntFromTo(0, 2);
 		this.moral = 0.3;
@@ -70,13 +70,8 @@ public class Human {
 	@ScheduledMethod(start = 1, interval = 1)
 	public void reduceImmunity() {
 		if (this.diseases > 0) {
-			this.immune -= 2 * this.diseases;
+			this.immune -= 0.015 * this.diseases;
 		}
-		if (this.immune == 0.0) {
-			Context<Object> context = ContextUtils.getContext(this);
-			context.remove(this);
-		}
-
 	}
 
 	public void moveTowards(GridPoint pt) {

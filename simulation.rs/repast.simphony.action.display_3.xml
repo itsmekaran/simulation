@@ -4,7 +4,7 @@
   <styles>
     <entry>
       <string>simulation.Virus</string>
-      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+      <string>simulation.VirusStyle</string>
     </entry>
     <entry>
       <string>simulation.Human</string>
@@ -31,7 +31,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-1088297335</hashCode>
+    <hashCode>135636476</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>grid</layoutProjection>
