@@ -8,7 +8,7 @@
     </entry>
     <entry>
       <string>simulation.Human</string>
-      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
+      <string>simulation.HumanStyle</string>
     </entry>
   </styles>
   <editedStyles>
@@ -31,7 +31,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-251106983</hashCode>
+    <hashCode>-1088297335</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>grid</layoutProjection>

@@ -28,29 +28,26 @@ public class Human {
 	private int age;
 	private int diseases;
 	public double moral;
-	
-	
+
 	public Human(ContinuousSpace<Object> space, Grid<Object> grid) {
 		this.space = space;
 		this.grid = grid;
 		this.energy = startingEnergy = energy;
-		//this.immune = Random.uniform.getNextIntFromTo(0, 100);
+		// this.immune = Random.uniform.getNextIntFromTo(0, 100);
 		this.immune = RandomHelper.nextDoubleFromTo(0.0, 100.0);
 		this.isInfected = false;
 		this.diseases = RandomHelper.nextIntFromTo(0, 2);
 		this.moral = 0.3;
 	}
-	
-	@Watch(watcheeClassName = "simulation.Virus", watcheeFieldNames = "moved", 
-			query = "within_vn 1", whenToTrigger = WatcherTriggerSchedule.IMMEDIATE)
+
+	@Watch(watcheeClassName = "simulation.Virus", watcheeFieldNames = "moved", query = "within_vn 1", whenToTrigger = WatcherTriggerSchedule.IMMEDIATE)
 	public void run() {
 		// get the grid location of this Human
 		GridPoint pt = grid.getLocation(this);
 
 		// use the GridCellNgh class to create GridCells for
 		// the surrounding neighborhood.
-		GridCellNgh<Virus> nghCreator = new GridCellNgh<Virus>(grid, pt,
-				Virus.class, 1, 1);
+		GridCellNgh<Virus> nghCreator = new GridCellNgh<Virus>(grid, pt, Virus.class, 1, 1);
 		List<GridCell<Virus>> gridCells = nghCreator.getNeighborhood(true);
 		SimUtilities.shuffle(gridCells, RandomHelper.getUniform());
 
@@ -62,25 +59,26 @@ public class Human {
 				minCount = cell.size();
 			}
 		}
-		
+
 		if (energy > 0) {
 			moveTowards(pointWithLeastZombies);
 		} else {
 			energy = startingEnergy;
 		}
 	}
-	
+
 	@ScheduledMethod(start = 1, interval = 1)
 	public void reduceImmunity() {
-		if(this.diseases > 0 ) {
-			this.immune -= 2*this.diseases;
+		if (this.diseases > 0) {
+			this.immune -= 2 * this.diseases;
 		}
-		if(this.immune == 0.0) {
+		if (this.immune == 0.0) {
 			Context<Object> context = ContextUtils.getContext(this);
-			context.remove(this); }
-		 
+			context.remove(this);
+		}
+
 	}
-	
+
 	public void moveTowards(GridPoint pt) {
 		// only move if we are not already in this grid location
 		if (!pt.equals(grid.getLocation(this))) {
@@ -89,8 +87,8 @@ public class Human {
 			double angle = SpatialMath.calcAngleFor2DMovement(space, myPoint, otherPoint);
 			space.moveByVector(this, 2, angle, 0);
 			myPoint = space.getLocation(this);
-			grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
+			grid.moveTo(this, (int) myPoint.getX(), (int) myPoint.getY());
 		}
 	}
-	
+
 }
