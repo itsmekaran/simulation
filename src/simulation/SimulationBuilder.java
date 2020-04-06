@@ -23,6 +23,10 @@ public class SimulationBuilder implements ContextBuilder<Object>{
 	@Override
 	public Context build(Context<Object> context) {
 		context.setId("simulation");
+		
+		NetworkBuilder<Object> netBuilder = new NetworkBuilder<Object>(
+				"infection network", context, true);
+		netBuilder.buildNetwork();
 
 		ContinuousSpaceFactory spaceFactory = ContinuousSpaceFactoryFinder
 				.createContinuousSpaceFactory(null);

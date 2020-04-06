@@ -112,9 +112,9 @@ public class Virus {
 				context.add(virus);
 				space.moveTo(virus, spacePt.getX(), spacePt.getY());
 				grid.moveTo(virus, pt.getX(), pt.getY());
+				Network<Object> net = (Network<Object>)context.getProjection("infection network");
+				net.addEdge(this, virus);
 			}
-			//Network<Object> net = (Network<Object>)context.getProjection("infection network");
-			//net.addEdge(this, virus);
 		}
 	}
 }
