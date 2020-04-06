@@ -61,7 +61,7 @@ public class Virus {
 	
 	public void recover() {
 		if(this.h != null && this.h.isInfected == true ) {
-			this.h.immune = (2 + this.h.moral) + this.h.immune;
+			this.h.immune = (1 + this.h.moral) + this.h.immune;
 			if(this.h.immune >= 100) {
 				GridPoint pt = this.grid.getLocation(this);
 				NdPoint spacePt = space.getLocation(this);
@@ -76,8 +76,8 @@ public class Virus {
 	}
 	
 	public void reduceImunnity() {
-		if(this.h.isInfected ==true)
-			this.h.immune -= 0.5;
+		if(this.h != null && this.h.isInfected ==true)
+			this.h.immune -= 2;
 	}
 	
 	public void moveTowards(GridPoint pt) {
@@ -110,10 +110,11 @@ public class Virus {
 			Context<Object> context = ContextUtils.getContext(obj);
 			if(this.infectionRate > (obj.immune) && obj.immune > 0)
 			{
-				context.remove(obj);
+				
 				Virus virus = new Virus(space, grid, this.infectionRate);
 				obj.isInfected = true; 
 				virus.h = obj;
+				context.remove(obj);
 				context.add(virus);
 				space.moveTo(virus, spacePt.getX(), spacePt.getY());
 				grid.moveTo(virus, pt.getX(), pt.getY());
