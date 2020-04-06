@@ -34,10 +34,10 @@ public class Human {
 		this.grid = grid;
 		this.energy = startingEnergy = energy;
 		// this.immune = Random.uniform.getNextIntFromTo(0, 100);
-		this.immune = RandomHelper.nextDoubleFromTo(40.0, 100.0);
+		this.immune = RandomHelper.nextDoubleFromTo(30.0, 100.0);
 		this.isInfected = false;
 		this.diseases = RandomHelper.nextIntFromTo(0, 2);
-		this.moral = 0.3;
+		this.moral = RandomHelper.nextDoubleFromTo(0.001, 0.003);
 	}
 
 	@Watch(watcheeClassName = "simulation.Virus", watcheeFieldNames = "moved", query = "within_vn 1", whenToTrigger = WatcherTriggerSchedule.IMMEDIATE)
@@ -70,7 +70,7 @@ public class Human {
 	@ScheduledMethod(start = 1, interval = 1)
 	public void reduceImmunity() {
 		if (this.diseases > 0) {
-			this.immune -= 0.015 * this.diseases;
+			this.immune -= (0.0015 * this.diseases);
 		}
 	}
 

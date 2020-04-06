@@ -1,28 +1,38 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor simphonyVersion="2.7.0">
-  <name>Grid display</name>
+  <name>Space Display</name>
   <type>2D</type>
   <styles>
     <entry>
       <string>simulation.Virus</string>
-      <string>simulation.VirusStyle</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
       <string>simulation.Human</string>
-      <string>simulation.HumanStyle</string>
+      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
     </entry>
   </styles>
   <editedStyles>
     <entry>
       <string>simulation.Virus</string>
-      <string>simulation.Virus.style_1.xml</string>
+      <string>simulation.Virus.style_2.xml</string>
     </entry>
     <entry>
       <string>simulation.Human</string>
       <null/>
     </entry>
   </editedStyles>
-  <netStyles/>
-  <editedNetStyles/>
+  <netStyles>
+    <entry>
+      <string>infection network</string>
+      <string>repast.simphony.visualization.editedStyle.EditedEdgeStyle2D</string>
+    </entry>
+  </netStyles>
+  <editedNetStyles>
+    <entry>
+      <string>infection network</string>
+      <string>infectionnetwork.style_0.xml</string>
+    </entry>
+  </editedNetStyles>
   <frequency>ON_MOVE</frequency>
   <schedParams>
     <start>1.0</start>
@@ -31,10 +41,10 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>135636476</hashCode>
+    <hashCode>962905064</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
-  <layoutProjection>grid</layoutProjection>
+  <layoutProjection>space</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
@@ -48,9 +58,14 @@
   </layerOrder>
   <projections>
     <repast.simphony.scenario.data.ProjectionData>
-      <id>grid</id>
+      <id>space</id>
       <attributes/>
-      <type>grid</type>
+      <type>continuous space</type>
+    </repast.simphony.scenario.data.ProjectionData>
+    <repast.simphony.scenario.data.ProjectionData>
+      <id>infection network</id>
+      <attributes/>
+      <type>network</type>
     </repast.simphony.scenario.data.ProjectionData>
   </projections>
   <visualizationProperties class="repast.simphony.visualization.UnitSizeLayoutProperties">
@@ -58,12 +73,19 @@
   </visualizationProperties>
   <projectionDescriptors>
     <entry>
-      <string>grid</string>
-      <repast.simphony.visualization.grid.GridProjectionDescriptor>
+      <string>infection network</string>
+      <repast.simphony.visualization.engine.DefaultProjectionDescriptor>
+        <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData[2]"/>
+        <props/>
+      </repast.simphony.visualization.engine.DefaultProjectionDescriptor>
+    </entry>
+    <entry>
+      <string>space</string>
+      <repast.simphony.visualization.continuous.ContinuousProjectionDescriptor>
         <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData"/>
         <props>
           <entry>
-            <string>repast.simphony.visualization.grid.GridDecorator</string>
+            <string>repast.simphony.visualization.continuous.ContinuousDecorator</string>
             <map>
               <entry>
                 <string>COLOR</string>
@@ -80,7 +102,7 @@
             </map>
           </entry>
         </props>
-      </repast.simphony.visualization.grid.GridProjectionDescriptor>
+      </repast.simphony.visualization.continuous.ContinuousProjectionDescriptor>
     </entry>
   </projectionDescriptors>
   <props/>
