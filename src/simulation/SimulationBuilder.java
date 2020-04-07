@@ -50,9 +50,18 @@ public class SimulationBuilder implements ContextBuilder<Object>{
 
 		int humanCount = (Integer) params.getValue("human_count");
 		
-		for (int i = 0; i < humanCount; i++) {
+		
+		for (int i = 0; i < humanCount/3; i++) {
+			
+			context.add(new Human(space, grid,50));
+		}
+		for (int i = humanCount/3; i < humanCount*2/3; i++) {
 			int energy = RandomHelper.nextIntFromTo(4, 10);
-			context.add(new Human(space, grid));
+			context.add(new Human(space, grid,60));
+		}
+		for (int i = humanCount*2/3; i < humanCount; i++) {
+			int energy = RandomHelper.nextIntFromTo(4, 10);
+			context.add(new Human(space, grid,70));
 		}
 
 		for (Object obj : context) {

@@ -28,16 +28,19 @@ public class Human {
 	private int age;
 	private int diseases;
 	public double moral;
+	public double orgImunne;
 
-	public Human(ContinuousSpace<Object> space, Grid<Object> grid) {
+	public Human(ContinuousSpace<Object> space, Grid<Object> grid,double im) {
 		this.space = space;
 		this.grid = grid;
 		this.energy = startingEnergy = energy;
 		// this.immune = Random.uniform.getNextIntFromTo(0, 100);
-		this.immune = RandomHelper.nextDoubleFromTo(30.0, 100.0);
+		//this.immune = RandomHelper.nextDoubleFromTo(30.0, 100.0);
+		this.immune = im;
 		this.isInfected = false;
 		this.diseases = RandomHelper.nextIntFromTo(0, 2);
 		this.moral = RandomHelper.nextDoubleFromTo(0.001, 0.003);
+		this.orgImunne = this.immune;
 	}
 
 	@Watch(watcheeClassName = "simulation.Virus", watcheeFieldNames = "moved", query = "within_vn 1", whenToTrigger = WatcherTriggerSchedule.IMMEDIATE)
@@ -67,12 +70,10 @@ public class Human {
 		}
 	}
 
-	@ScheduledMethod(start = 1, interval = 1)
-	public void reduceImmunity() {
-		if (this.diseases > 0) {
-			this.immune -= (0.0015 * this.diseases);
-		}
-	}
+	
+	  @ScheduledMethod(start = 1, interval = 1) public void reduceImmunity() { if
+	  (this.diseases > 0) { this.immune -= (0.002 * this.diseases); } }
+	 
 
 	public void moveTowards(GridPoint pt) {
 		// only move if we are not already in this grid location
